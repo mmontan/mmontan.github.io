@@ -56,6 +56,27 @@
             margin-bottom: 12px;
         }
 
+        .header-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 18%;
+            border: 3px solid rgba(255,255,255,0.35);
+            margin-bottom: 20px;
+        }
+
+        .section-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 28%;
+            border: 3px solid rgba(255,255,255,0.35);
+            display: block;
+            margin-bottom: 20px;
+        }
+
         .tabs {
             background: var(--dark);
             display: flex;
@@ -504,6 +525,7 @@
 <body>
     <header>
         <div class="container">
+            <img src="images/headshot.jpg" alt="Mirko Montanari" class="header-photo">
             <h1>Mirko Montanari</h1>
             <p class="tagline">Cloud AI Security Tech Lead at Google</p>
             <p class="tagline">Agent Security &bull; Model Infrastructure Security &bull; Distributed Systems</p>
@@ -691,6 +713,7 @@
     <div id="tab-endurance" class="tab-panel" role="tabpanel">
     <section class="endurance-section">
         <div class="container">
+            <img src="images/cycling.jpg" alt="Mirko Montanari cycling" class="section-photo">
             <h2>Ultra & Endurance Cycling</h2>
             <p class="endurance-intro">
                 Beyond technology, I push my limits through randonneuring and ultra-endurance cycling.
