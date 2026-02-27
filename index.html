@@ -27,7 +27,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -35,27 +35,27 @@
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             color: white;
-            padding: 28px 0;
+            padding: 42px 0;
             text-align: center;
         }
 
         header h1 {
-            font-size: 2rem;
-            margin-bottom: 4px;
+            font-size: 2.5rem;
+            margin-bottom: 8px;
             font-weight: 300;
         }
 
         header .tagline {
-            font-size: 1rem;
+            font-size: 1.1rem;
             opacity: 0.9;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 16px;
+            margin-top: 16px;
         }
 
         .social-links a {
@@ -78,6 +78,36 @@
         }
 
         section:last-child {
+            border-bottom: none;
+        }
+
+        main.container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            align-items: start;
+        }
+
+        .sidebar {
+            padding: 50px 30px 50px 0;
+            border-right: 1px solid #ddd;
+        }
+
+        .sidebar section {
+            padding: 0;
+            border-bottom: none;
+        }
+
+        .sidebar section + section {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #ddd;
+        }
+
+        .main-content section {
+            padding: 50px 0 50px 40px;
+        }
+
+        .main-content section:last-child {
             border-bottom: none;
         }
 
@@ -272,7 +302,7 @@
             color: var(--secondary);
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
             }
@@ -282,7 +312,18 @@
                 align-items: center;
             }
 
-            section {
+            main.container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding: 30px 0;
+            }
+
+            .main-content section {
                 padding: 30px 0;
             }
         }
@@ -303,22 +344,39 @@
     </header>
 
     <main class="container">
-        <section id="about">
-            <h2>About</h2>
-            <div class="about-content">
-                <p>
-                    I'm a Software Engineer and Tech Lead at Google, focusing on Cloud AI Security.
-                    My work centers on agent security and model infrastructure security, ensuring that
-                    AI systems are built with robust security foundations.
-                </p>
-                <p>
-                    My background combines deep expertise in distributed systems and security,
-                    with a PhD from the University of Illinois at Urbana-Champaign where I researched
-                    security monitoring systems for large-scale distributed infrastructure.
-                </p>
-            </div>
-        </section>
+        <aside class="sidebar">
+            <section id="about">
+                <h2>About</h2>
+                <div class="about-content">
+                    <p>
+                        I'm a Software Engineer and Tech Lead at Google, focusing on Cloud AI Security.
+                        My work centers on agent security and model infrastructure security, ensuring that
+                        AI systems are built with robust security foundations.
+                    </p>
+                </div>
+            </section>
 
+            <section id="education">
+                <h2>Education</h2>
+
+                <div class="education-item">
+                    <h3>Ph.D. in Computer Science</h3>
+                    <p class="institution">University of Illinois at Urbana-Champaign</p>
+                    <p class="period">2013</p>
+                    <p>
+                        <strong>Dissertation:</strong> "Limiting Information Exposure in Multi-Domain Monitoring Systems"
+                    </p>
+                    <p>
+                        <strong>Research Areas:</strong> Network Security, Security Monitoring, Distributed Systems, Event-based Systems
+                    </p>
+                    <p>
+                        <strong>Advisor:</strong> Prof. Roy H. Campbell, Systems Software Research Group
+                    </p>
+                </div>
+            </section>
+        </aside>
+
+        <div class="main-content">
         <section id="experience">
             <h2>Professional Experience</h2>
 
@@ -352,25 +410,6 @@
                     <li>Built large-scale analysis systems to identify datasets stored or accessed with inadequate privacy protections, operating at Google scale</li>
                     <li>Played a key role in driving GDPR compliance across Google's product portfolio, establishing data governance practices adopted organization-wide</li>
                 </ul>
-            </div>
-        </section>
-
-        <section id="education">
-            <h2>Education</h2>
-
-            <div class="education-item">
-                <h3>Ph.D. in Computer Science</h3>
-                <p class="institution">University of Illinois at Urbana-Champaign</p>
-                <p class="period">2013</p>
-                <p>
-                    <strong>Dissertation:</strong> "Limiting Information Exposure in Multi-Domain Monitoring Systems"
-                </p>
-                <p>
-                    <strong>Research Areas:</strong> Network Security, Security Monitoring, Distributed Systems, Event-based Systems
-                </p>
-                <p>
-                    <strong>Advisor:</strong> Prof. Roy H. Campbell, Systems Software Research Group
-                </p>
             </div>
         </section>
 
@@ -457,6 +496,7 @@
                 </a>
             </p>
         </section>
+        </div>
     </main>
 
     <section class="endurance-section">
