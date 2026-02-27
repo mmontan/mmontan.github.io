@@ -51,25 +51,55 @@
             margin-bottom: 12px;
         }
 
-        .social-links {
+        .tabs {
+            background: var(--dark);
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin-top: 16px;
         }
 
-        .social-links a {
+        .tab-btn {
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: rgba(255,255,255,0.6);
+            padding: 14px 36px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
             color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 4px;
-            transition: all 0.3s;
         }
 
-        .social-links a:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
+        .tab-btn.active {
+            color: white;
+            border-bottom-color: var(--secondary);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .sidebar-links {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-links a:hover {
+            text-decoration: underline;
         }
 
         section {
@@ -291,6 +321,133 @@
             max-width: 700px;
         }
 
+        .old-trips-heading {
+            font-size: 1.4rem;
+            color: white;
+            margin: 50px 0 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .trips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .trip-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            transition: background 0.2s;
+        }
+
+        .trip-card.no-media {
+            grid-template-columns: 1fr;
+        }
+
+        .trip-card:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .trip-media iframe {
+            width: 100%;
+            height: 220px;
+            border: none;
+            display: block;
+        }
+
+        .trip-media img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .trip-media-link {
+            display: block;
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .trip-media-link img {
+            height: 220px;
+            transition: transform 0.3s;
+        }
+
+        .trip-media-link:hover img {
+            transform: scale(1.03);
+        }
+
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.25);
+            transition: background 0.2s;
+        }
+
+        .trip-media-link:hover .play-overlay {
+            background: rgba(0,0,0,0.4);
+        }
+
+        .play-overlay svg {
+            width: 56px;
+            height: 56px;
+            opacity: 0.9;
+        }
+
+        .trip-info {
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .trip-card.no-media .trip-info {
+            padding: 20px;
+        }
+
+        .trip-card h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .trip-card p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+
+        .trip-card a {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .trip-card a:hover {
+            color: white;
+            border-bottom-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .trip-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
         footer {
             background: var(--dark);
             color: white;
@@ -335,14 +492,15 @@
             <h1>Mirko Montanari</h1>
             <p class="tagline">Cloud AI Security Tech Lead at Google</p>
             <p class="tagline">Agent Security &bull; Model Infrastructure Security &bull; Distributed Systems</p>
-            <div class="social-links">
-                <a href="https://github.com/mmontan" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/mirkomontanari" target="_blank">LinkedIn</a>
-                <a href="https://scholar.google.com/citations?user=_HHcLYQAAAAJ" target="_blank">Google Scholar</a>
-            </div>
         </div>
     </header>
 
+    <nav class="tabs">
+        <button class="tab-btn active" data-tab="tab-professional">Professional</button>
+        <button class="tab-btn" data-tab="tab-endurance">Ultra Endurance</button>
+    </nav>
+
+    <div id="tab-professional" class="tab-panel active">
     <main class="container">
         <aside class="sidebar">
             <section id="about">
@@ -353,6 +511,11 @@
                         My work centers on agent security and model infrastructure security, ensuring that
                         AI systems are built with robust security foundations.
                     </p>
+                </div>
+                <div class="sidebar-links">
+                    <a href="https://linkedin.com/in/mirkomontanari" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/mmontan" target="_blank">GitHub</a>
+                    <a href="https://scholar.google.com/citations?user=_HHcLYQAAAAJ" target="_blank">Google Scholar</a>
                 </div>
             </section>
 
@@ -498,7 +661,9 @@
         </section>
         </div>
     </main>
+    </div>
 
+    <div id="tab-endurance" class="tab-panel">
     <section class="endurance-section">
         <div class="container">
             <h2>Ultra & Endurance Cycling</h2>
@@ -527,8 +692,67 @@
                     <p class="event-details">Self-supported endurance rides</p>
                 </div>
             </div>
+
+            <h3 class="old-trips-heading">Old Trips</h3>
+            <div class="trips-list">
+                <div class="trip-card">
+                    <div class="trip-media">
+                        <iframe src="https://www.youtube.com/embed/rJw7o53TUSo" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="trip-info">
+                        <h4>King Ridge Road &mdash; 2021</h4>
+                        <p>With all events cancelled, Lorenzo and I decided to retake the route of the legendary Grasshopper gravel race on our own. Multiple mechanicals, beautiful terrain.</p>
+                        <a href="https://www.cyclingforpastries.com/home/king-ridge-road" target="_blank">Read more &rarr;</a>
+                    </div>
+                </div>
+                <div class="trip-card">
+                    <div class="trip-media">
+                        <iframe src="https://www.youtube.com/embed/a63O1_i2_V0" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="trip-info">
+                        <h4>Tioga Pass &mdash; 2020</h4>
+                        <p>Day ride to California's highest highway pass in the Sierra Nevada, on the annual opening weekend when the pass opens exclusively to bicycles before vehicle traffic.</p>
+                        <a href="https://www.cyclingforpastries.com/home/tioga-pass" target="_blank">Read more &rarr;</a>
+                    </div>
+                </div>
+                <div class="trip-card">
+                    <div class="trip-media">
+                        <img src="https://lh3.googleusercontent.com/sitesv/APaQ0STmNQPxQPHFsf4NrkS9z_kYaq8mMCJ6FE8U1URq1FudvGtcXo-AsFZnfSg7-ID1sNtfjXp5swQcfzPO_bfBIsDxfx-gzyGxtyi5kP1bQ5KnkIK8CFDgMJ5bc907zxikPmL_x66deK9zTW9mmJom1yqS9MOtJNhvTUoPx8rf4SdjlKmNSSx3iI5oF6N18PQZhy1i3ENka1PZmUQ=w1280" alt="SadPantaBarbara route">
+                    </div>
+                    <div class="trip-info">
+                        <h4>SadPantaBarbara &mdash; 2019</h4>
+                        <p>Eight days from Panoche in the central valley to Santa Barbara along interior coastal gravel roads. An unusual route down the California coast.</p>
+                        <a href="https://www.cyclingforpastries.com/home/sadpantabarbara" target="_blank">Read more &rarr;</a>
+                    </div>
+                </div>
+                <div class="trip-card">
+                    <div class="trip-media">
+                        <iframe src="https://www.youtube.com/embed/yMuuHzFE1Js" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="trip-info">
+                        <h4>Paris &ndash; Brest &ndash; Paris &mdash; 2019</h4>
+                        <p>The legendary 1,200km rand&ocirc;nn&eacute;e from Paris to Brest and back. Completed in 90 hours across four stages through the French countryside.</p>
+                        <a href="https://www.cyclingforpastries.com/home/pbp-2019-part-1" target="_blank">Read more &rarr;</a>
+                    </div>
+                </div>
+                <div class="trip-card no-media">
+                    <div class="trip-info">
+                        <h4>Reno to Mendocino &mdash; 2018</h4>
+                        <p>The first time was so good I had to do it again. Five days crossing California from east to west on gravel and backcountry roads through the Sierra Nevada.</p>
+                        <a href="https://www.cyclingforpastries.com/" target="_blank">Read more &rarr;</a>
+                    </div>
+                </div>
+                <div class="trip-card no-media">
+                    <div class="trip-info">
+                        <h4>Reno to Mendocino &mdash; 2016</h4>
+                        <p>A five-day gravel expedition crossing California east to west through the Sierra Nevada and the Mendocino Range on remote forest roads.</p>
+                        <a href="https://www.cyclingforpastries.com/" target="_blank">Read more &rarr;</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    </div>
 
     <footer>
         <div class="container">
@@ -538,5 +762,15 @@
             </p>
         </div>
     </footer>
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
