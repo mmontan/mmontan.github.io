@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mirko Montanari</title>
+    <meta name="description" content="Mirko Montanari — Tech Lead at Google Cloud AI Security. Over a decade of work in security, privacy, and AI infrastructure.">
+    <meta property="og:title" content="Mirko Montanari">
+    <meta property="og:description" content="Tech Lead at Google Cloud AI Security. Agent security, model infrastructure security, distributed systems.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
     <style>
         :root {
             --primary: #2c3e50;
@@ -65,7 +70,7 @@
             padding: 14px 36px;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: color 0.2s, border-color 0.2s;
         }
 
         .tab-btn:hover {
@@ -147,7 +152,7 @@
             margin-bottom: 25px;
             padding-bottom: 10px;
             border-bottom: 3px solid var(--secondary);
-            display: inline-block;
+            width: fit-content;
         }
 
         .about-content {
@@ -202,6 +207,8 @@
             padding: 25px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -237,6 +244,11 @@
 
         .project-card a:hover {
             text-decoration: underline;
+        }
+
+        .project-card .links {
+            margin-top: auto;
+            padding-top: 15px;
         }
 
         .publications-list {
@@ -281,38 +293,12 @@
         .endurance-section {
             background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
             color: white;
-            margin: 0 -20px;
-            padding: 50px 20px;
+            padding: 50px 0;
         }
 
         .endurance-section h2 {
             color: white;
             border-bottom-color: var(--accent);
-        }
-
-        .endurance-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .endurance-item {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-        }
-
-        .endurance-item .event-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .endurance-item .event-details {
-            opacity: 0.9;
-            font-size: 0.95rem;
         }
 
         .endurance-intro {
@@ -344,10 +330,6 @@
             display: grid;
             grid-template-columns: 380px 1fr;
             transition: background 0.2s;
-        }
-
-        .trip-card.no-media {
-            grid-template-columns: 1fr;
         }
 
         .trip-card:hover {
@@ -411,10 +393,6 @@
             justify-content: center;
         }
 
-        .trip-card.no-media .trip-info {
-            padding: 20px;
-        }
-
         .trip-card h4 {
             font-size: 1.05rem;
             font-weight: 600;
@@ -442,10 +420,48 @@
             border-bottom-color: white;
         }
 
-        @media (max-width: 768px) {
-            .trip-card {
-                grid-template-columns: 1fr;
-            }
+        .channel-link {
+            margin-top: 25px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255,255,255,0.1);
+            padding: 14px 20px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            max-width: 300px;
+        }
+
+        .channel-link:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+        .channel-link img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .channel-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .channel-sub {
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        .publications-footer {
+            margin-top: 20px;
+        }
+
+        .footer-sub {
+            margin-top: 10px;
+            opacity: 0.7;
         }
 
         footer {
@@ -464,11 +480,6 @@
                 font-size: 2rem;
             }
 
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
             main.container {
                 grid-template-columns: 1fr;
             }
@@ -483,6 +494,10 @@
             .main-content section {
                 padding: 30px 0;
             }
+
+            .trip-card {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -495,21 +510,32 @@
         </div>
     </header>
 
-    <nav class="tabs">
-        <button class="tab-btn active" data-tab="tab-professional">Professional</button>
-        <button class="tab-btn" data-tab="tab-endurance">Ultra Endurance</button>
+    <nav class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="tab-professional" role="tab" aria-selected="true" aria-controls="tab-professional">Professional</button>
+        <button class="tab-btn" data-tab="tab-endurance" role="tab" aria-selected="false" aria-controls="tab-endurance">Ultra Endurance</button>
     </nav>
 
-    <div id="tab-professional" class="tab-panel active">
+    <div id="tab-professional" class="tab-panel active" role="tabpanel">
     <main class="container">
         <aside class="sidebar">
             <section id="about">
                 <h2>About</h2>
                 <div class="about-content">
                     <p>
-                        I'm a Software Engineer and Tech Lead at Google, focusing on Cloud AI Security.
-                        My work centers on agent security and model infrastructure security, ensuring that
-                        AI systems are built with robust security foundations.
+                        I'm a Software Engineer and Tech Lead at Google, with over a decade of work
+                        at the intersection of security, privacy, and AI.
+                    </p>
+                    <p>
+                        My career has followed a deliberate arc: from academic research in distributed
+                        security monitoring (Ph.D., UIUC 2013), to building large-scale privacy and
+                        data governance systems at Google &mdash; including a central role in GDPR
+                        compliance across the product portfolio &mdash; to securing critical cloud
+                        infrastructure for Alphabet at massive scale.
+                    </p>
+                    <p>
+                        Today I lead security for Google's Cloud AI platform, focused on the emerging
+                        challenges of agent security and model infrastructure security: the hard problems
+                        that arise when AI systems operate autonomously in complex environments.
                     </p>
                 </div>
                 <div class="sidebar-links">
@@ -548,8 +574,9 @@
                 <p class="company">Google</p>
                 <p class="period">March 2024 &ndash; Present</p>
                 <ul>
-                    <li>Lead security architecture for Cloud AI infrastructure, focusing on agent security and model infrastructure security</li>
-                    <li>Drive cross-functional security initiatives within the Federated Security team in Google Cloud</li>
+                    <li>Define and lead the security architecture for Google's Cloud AI platform, covering the full surface area of AI agent systems &mdash; from secure tool use and credential scoping to isolation boundaries between agent components</li>
+                    <li>Partner across Google Cloud product and engineering teams to embed security requirements early in the design of new AI capabilities, ensuring secure-by-default behaviors at the platform level</li>
+                    <li>Shape Google's internal posture on agentic AI risk, translating novel threat models into actionable security controls for builders of agent-based products</li>
                 </ul>
             </div>
 
@@ -558,20 +585,21 @@
                 <p class="company">Google</p>
                 <p class="period">September 2019 &ndash; February 2024</p>
                 <ul>
-                    <li>Designed and enforced security guardrails and best practices for Alphabet entities and acquisitions running workloads on Google Cloud Platform</li>
-                    <li>Led adoption of critical GCP products &mdash; BigQuery and GKE &mdash; for large-scale, high-stakes workloads, ensuring compliance with Google's stringent data security and privacy policies</li>
-                    <li>Built the foundational infrastructure securing public-facing products and major data analysis pipelines; at peak scale, the system underpinned 60%+ of all internal GKE usage (XXXX VMs) and housed ~30% of Google's total BigQuery data</li>
-                    <li>Managed a team of 10 engineers and provided technical oversight across a broader organization of 30+ engineers</li>
+                    <li>Designed and enforced security guardrails for Alphabet entities and acquisitions onboarding to Google Cloud, spanning dozens of companies and thousands of engineers operating under Google's data security and privacy standards</li>
+                    <li>Drove secure adoption of BigQuery and GKE for critical internal workloads, building compliance frameworks and security tooling that made high-stakes data processing possible within Google's policy boundaries</li>
+                    <li>Built the foundational platform infrastructure securing public-facing products and major data analysis pipelines; at peak scale, the system underpinned 60%+ of all internal GKE usage (tens of thousands of VMs) and housed ~30% of Google's total BigQuery data</li>
+                    <li>Grew and led a team of 10 engineers; set technical direction and drove architectural decisions for a broader organization of 30+ engineers across Cloud Hybrid Platforms</li>
                 </ul>
             </div>
 
             <div class="experience-item">
                 <h3>Tech Lead and Manager, Privacy and Data Governance</h3>
                 <p class="company">Google</p>
-                <p class="period">2013 &ndash; 2019</p>
+                <p class="period">September 2013 &ndash; August 2019</p>
                 <ul>
-                    <li>Built large-scale analysis systems to identify datasets stored or accessed with inadequate privacy protections, operating at Google scale</li>
-                    <li>Played a key role in driving GDPR compliance across Google's product portfolio, establishing data governance practices adopted organization-wide</li>
+                    <li>Built large-scale automated systems to detect datasets stored or accessed without adequate privacy controls, scanning across Google's storage infrastructure to surface risks at a scale no manual process could reach</li>
+                    <li>Led Google's engineering response to GDPR for key product areas, translating regulatory requirements into technical controls and data governance standards adopted across the company's product portfolio</li>
+                    <li>Defined data lifecycle and access policies for sensitive datasets, partnering with legal, policy, and product teams to operationalize privacy-by-design principles across engineering orgs</li>
                 </ul>
             </div>
         </section>
@@ -583,24 +611,21 @@
                     <h3>Agent Engine CLI</h3>
                     <p>A simple CLI to manage GCP Agent Engine resources. Streamlines the workflow for deploying and managing AI agents on Google Cloud Platform.</p>
                     <span class="tech">Python</span>
-                    <br><br>
-                    <a href="https://github.com/mmontan/agent-engine-cli" target="_blank">View on GitHub</a>
+                    <div class="links"><a href="https://github.com/mmontan/agent-engine-cli" target="_blank">View on GitHub</a></div>
                 </div>
 
                 <div class="project-card">
                     <h3>Schoopet AI</h3>
                     <p>An intelligent agent designed to help you never forget important things. Built with modern AI agent frameworks.</p>
                     <span class="tech">Python</span>
-                    <br><br>
-                    <a href="https://github.com/mmontan/schoopet-ai" target="_blank">View on GitHub</a>
+                    <div class="links"><a href="https://github.com/mmontan/schoopet-ai" target="_blank">View on GitHub</a></div>
                 </div>
 
                 <div class="project-card">
                     <h3>ADK Samples</h3>
                     <p>A collection of sample agents built with Google's Agent Development Kit (ADK). Demonstrates best practices for agent development.</p>
                     <span class="tech">Python</span>
-                    <br><br>
-                    <a href="https://github.com/mmontan/adk-samples" target="_blank">View on GitHub</a>
+                    <div class="links"><a href="https://github.com/mmontan/adk-samples" target="_blank">View on GitHub</a></div>
                 </div>
             </div>
         </section>
@@ -613,7 +638,7 @@
                         Distributed Security Policy Conformance
                         <span class="award-badge">Best Paper</span>
                     </p>
-                    <p class="venue">Computers & Security, 2013 / IFIP SEC 2011</p>
+                    <p class="venue">Computers &amp; Security, 2013 / IFIP SEC 2011</p>
                     <p class="authors">M. Montanari, E. Chan, K. Larson, W. Yoo, R.H. Campbell</p>
                 </li>
                 <li>
@@ -653,7 +678,7 @@
                     <p class="authors">R. Crepaldi, M. Montanari, I. Gupta, R. Kravets</p>
                 </li>
             </ul>
-            <p style="margin-top: 20px;">
+            <p class="publications-footer">
                 <a href="https://scholar.google.com/citations?user=_HHcLYQAAAAJ" target="_blank">
                     View all publications on Google Scholar
                 </a>
@@ -663,7 +688,7 @@
     </main>
     </div>
 
-    <div id="tab-endurance" class="tab-panel">
+    <div id="tab-endurance" class="tab-panel" role="tabpanel">
     <section class="endurance-section">
         <div class="container">
             <h2>Ultra & Endurance Cycling</h2>
@@ -672,11 +697,11 @@
                 These long-distance, self-supported rides teach resilience, mental fortitude, and the
                 value of consistent effort over time.
             </p>
-            <a href="https://www.youtube.com/@RandoSquirrel" target="_blank" style="margin-top: 25px; color: white; text-decoration: none; display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.1); padding: 14px 20px; border-radius: 8px; transition: background 0.2s; max-width: 300px;">
-                <img src="images/randosquirrel.jpg" alt="RandoSquirrel" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+            <a href="https://www.youtube.com/@RandoSquirrel" target="_blank" class="channel-link">
+                <img src="images/randosquirrel.jpg" alt="RandoSquirrel">
                 <div>
-                    <div style="font-weight: 600; font-size: 1rem;">RandoSquirrel</div>
-                    <div style="opacity: 0.7; font-size: 0.85rem;">YouTube &rarr;</div>
+                    <div class="channel-name">RandoSquirrel</div>
+                    <div class="channel-sub">YouTube &rarr;</div>
                 </div>
             </a>
 
@@ -855,17 +880,23 @@
     <footer>
         <div class="container">
             <p>Mirko Montanari &bull; San Francisco, CA</p>
-            <p style="margin-top: 10px; opacity: 0.7;">
+            <p class="footer-sub">
                 <a href="https://github.com/mmontan">github.com/mmontan</a>
             </p>
         </div>
     </footer>
     <script>
         function activateTab(tabId) {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
             const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-            if (btn) btn.classList.add('active');
+            if (btn) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+            }
             const panel = document.getElementById(tabId);
             if (panel) panel.classList.add('active');
         }
