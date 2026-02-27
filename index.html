@@ -769,14 +769,27 @@
         </div>
     </footer>
     <script>
+        function activateTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+            if (btn) btn.classList.add('active');
+            const panel = document.getElementById(tabId);
+            if (panel) panel.classList.add('active');
+        }
+
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById(btn.dataset.tab).classList.add('active');
+                activateTab(btn.dataset.tab);
+                history.replaceState(null, '', '#' + btn.dataset.tab);
             });
         });
+
+        // Load tab from URL hash on page load
+        const hash = location.hash.replace('#', '');
+        if (hash && document.getElementById(hash)) {
+            activateTab(hash);
+        }
     </script>
 </body>
 </html>
