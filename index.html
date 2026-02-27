@@ -40,8 +40,13 @@
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
             color: white;
-            padding: 42px 0;
-            text-align: center;
+            padding: 32px 0;
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            gap: 28px;
         }
 
         header h1 {
@@ -53,28 +58,18 @@
         header .tagline {
             font-size: 1.1rem;
             opacity: 0.9;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
         }
 
         .header-photo {
-            width: 150px;
-            height: 150px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             object-position: center 18%;
             border: 3px solid rgba(255,255,255,0.35);
-            margin-bottom: 20px;
-        }
-
-        .section-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: center 28%;
-            border: 3px solid rgba(255,255,255,0.35);
-            display: block;
-            margin-bottom: 20px;
+            flex-shrink: 0;
+            transition: opacity 0.2s;
         }
 
         .tabs {
@@ -497,6 +492,11 @@
         }
 
         @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
             header h1 {
                 font-size: 2rem;
             }
@@ -525,10 +525,12 @@
 <body>
     <header>
         <div class="container">
-            <img src="images/headshot.jpg" alt="Mirko Montanari" class="header-photo">
-            <h1>Mirko Montanari</h1>
-            <p class="tagline">Cloud AI Security Tech Lead at Google</p>
-            <p class="tagline">Agent Security &bull; Model Infrastructure Security &bull; Distributed Systems</p>
+            <img src="images/headshot.jpg" alt="Mirko Montanari" class="header-photo" id="header-photo">
+            <div>
+                <h1>Mirko Montanari</h1>
+                <p class="tagline">Cloud AI Security Tech Lead at Google</p>
+                <p class="tagline">Agent Security &bull; Model Infrastructure Security &bull; Distributed Systems</p>
+            </div>
         </div>
     </header>
 
@@ -713,7 +715,6 @@
     <div id="tab-endurance" class="tab-panel" role="tabpanel">
     <section class="endurance-section">
         <div class="container">
-            <img src="images/cycling.jpg" alt="Mirko Montanari cycling" class="section-photo">
             <h2>Ultra & Endurance Cycling</h2>
             <p class="endurance-intro">
                 Beyond technology, I push my limits through randonneuring and ultra-endurance cycling.
@@ -909,6 +910,11 @@
         </div>
     </footer>
     <script>
+        const headerPhotos = {
+            'tab-professional': { src: 'images/headshot.jpg', alt: 'Mirko Montanari' },
+            'tab-endurance':    { src: 'images/cycling.jpg',  alt: 'Mirko Montanari cycling' },
+        };
+
         function activateTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(b => {
                 b.classList.remove('active');
@@ -922,6 +928,17 @@
             }
             const panel = document.getElementById(tabId);
             if (panel) panel.classList.add('active');
+
+            const photo = document.getElementById('header-photo');
+            const meta = headerPhotos[tabId];
+            if (photo && meta) {
+                photo.style.opacity = '0';
+                setTimeout(() => {
+                    photo.src = meta.src;
+                    photo.alt = meta.alt;
+                    photo.style.opacity = '1';
+                }, 200);
+            }
         }
 
         document.querySelectorAll('.tab-btn').forEach(btn => {
